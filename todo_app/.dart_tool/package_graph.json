@@ -12,6 +12,7 @@
         "firebase_auth",
         "firebase_core",
         "flutter",
+        "flutter_native_splash",
         "flutter_slidable",
         "google_fonts",
         "smooth_page_indicator"
@@ -71,6 +72,23 @@
       ]
     },
     {
+      "name": "flutter_native_splash",
+      "version": "2.4.6",
+      "dependencies": [
+        "ansicolor",
+        "args",
+        "flutter",
+        "flutter_web_plugins",
+        "html",
+        "image",
+        "meta",
+        "path",
+        "universal_io",
+        "xml",
+        "yaml"
+      ]
+    },
+    {
       "name": "smooth_page_indicator",
       "version": "1.2.1",
       "dependencies": [
@@ -89,7 +107,7 @@
     },
     {
       "name": "flutter_slidable",
-      "version": "4.0.0",
+      "version": "3.1.2",
       "dependencies": [
         "flutter"
       ]
@@ -357,6 +375,49 @@
       ]
     },
     {
+      "name": "ansicolor",
+      "version": "2.0.3",
+      "dependencies": []
+    },
+    {
+      "name": "xml",
+      "version": "6.5.0",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
+      ]
+    },
+    {
+      "name": "universal_io",
+      "version": "2.2.2",
+      "dependencies": [
+        "collection",
+        "meta",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "html",
+      "version": "0.15.6",
+      "dependencies": [
+        "csslib",
+        "source_span"
+      ]
+    },
+    {
+      "name": "flutter_web_plugins",
+      "version": "0.0.0",
+      "dependencies": [
+        "characters",
+        "collection",
+        "flutter",
+        "material_color_utilities",
+        "meta",
+        "vector_math"
+      ]
+    },
+    {
       "name": "crypto",
       "version": "3.0.6",
       "dependencies": [
@@ -464,15 +525,6 @@
       "dependencies": []
     },
     {
-      "name": "xml",
-      "version": "6.5.0",
-      "dependencies": [
-        "collection",
-        "meta",
-        "petitparser"
-      ]
-    },
-    {
       "name": "archive",
       "version": "4.0.7",
       "dependencies": [
@@ -482,10 +534,25 @@
       ]
     },
     {
+      "name": "petitparser",
+      "version": "6.1.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
       "name": "typed_data",
       "version": "1.4.0",
       "dependencies": [
         "collection"
+      ]
+    },
+    {
+      "name": "csslib",
+      "version": "1.0.2",
+      "dependencies": [
+        "source_span"
       ]
     },
     {
@@ -557,18 +624,6 @@
       ]
     },
     {
-      "name": "flutter_web_plugins",
-      "version": "0.0.0",
-      "dependencies": [
-        "characters",
-        "collection",
-        "flutter",
-        "material_color_utilities",
-        "meta",
-        "vector_math"
-      ]
-    },
-    {
       "name": "_flutterfire_internals",
       "version": "1.3.59",
       "dependencies": [
@@ -576,14 +631,6 @@
         "firebase_core",
         "firebase_core_platform_interface",
         "flutter",
-        "meta"
-      ]
-    },
-    {
-      "name": "petitparser",
-      "version": "6.1.0",
-      "dependencies": [
-        "collection",
         "meta"
       ]
     },
