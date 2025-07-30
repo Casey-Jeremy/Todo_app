@@ -1,0 +1,128 @@
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    padding: 20px;
+    box-sizing: border-box;
+}
+  
+.loginContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+}
+  
+.loginInfo {
+    flex: 1;
+    padding: 40px;
+    color: #fff;
+}
+  
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+  
+.logoIcon {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+}
+  
+.loginInfo h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+  
+.loginInfo p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+  
+.loginFormContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+  
+.loginForm {
+    width: 100%;
+    max-width: 380px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+  
+.formGroup {
+    margin-bottom: 20px;
+    text-align: left;
+}
+  
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+  
+.formGroup input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+  
+.formActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+.signupLink {
+    font-size: 14px;
+    color: #555;
+}
+  
+.loginButton {
+    width: auto;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #5a2ab3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.footer {
+    position: absolute;
+    bottom: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+  
+@media (max-width: 768px) {
+    .loginInfo {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .loginInfo h1 {
+      font-size: 32px;
+    }
+}

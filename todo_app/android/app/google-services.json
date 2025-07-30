@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "383277827031",
+    "project_id": "dev-challenge-app",
+    "storage_bucket": "dev-challenge-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383277827031:android:41743aa131e1ed7ea78192",
+        "android_client_info": {
+          "package_name": "com.example.todo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl39uUASOoYBMHs-7UBTmN78ABrsOSrYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
