@@ -1,4 +1,3 @@
-// lib/screens/login_screen.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // ... your existing variables ...
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
@@ -23,9 +21,53 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
     super.dispose();
   }
-
+  
+  // --- NEW: FORGOT PASSWORD DIALOG ---
+  Future<void> _showForgotPasswordDialog() async {
+    final resetEmailController = TextEditingController();
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Reset Password'),
+          content: TextField(
+            controller: resetEmailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(hintText: "Enter your email address"),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: const Text('Send Link'),
+              onPressed: () async {
+                if (resetEmailController.text.isNotEmpty) {
+                  try {
+                    await FirebaseAuth.instance.sendPasswordResetEmail(
+                      email: resetEmailController.text.trim(),
+                    );
+                    Navigator.of(context).pop(); // Close the dialog
+                    _showErrorSnackBar(
+                      "Password reset link sent to your email.", 
+                      isError: false,
+                    );
+                  } on FirebaseAuthException catch (e) {
+                    Navigator.of(context).pop();
+                    _showErrorSnackBar(e.message ?? "An error occurred.");
+                  }
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Future<void> _submit() async {
+    // ... (This function remains unchanged from the previous version)
     if (!mounted) return;
     setState(() { _isLoading = true; });
 
@@ -41,11 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
           password: _passwordController.text.trim(),
         );
         
-        // UPDATED: Add the hasCompletedOnboarding flag
         await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
           'email': userCredential.user!.email,
           'createdAt': Timestamp.now(),
-          'hasCompletedOnboarding': false, // Add this flag
+          'hasCompletedOnboarding': false,
         });
       }
     } on FirebaseAuthException catch (e) {
@@ -56,16 +97,18 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() { _isLoading = false; });
   }
 
-  void _showErrorSnackBar(String message) {
+  void _showErrorSnackBar(String message, {bool isError = true}) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), backgroundColor: Colors.red),
+      SnackBar(
+        content: Text(message), 
+        backgroundColor: isError ? Colors.red : Colors.green[600],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    // ... your existing build method, no changes needed here ...
     final String title = _isLoginMode ? 'Welcome Back!' : 'Create Account';
     final String subtitle = _isLoginMode ? 'Log in to continue.' : 'Sign up to get started.';
     final String buttonText = _isLoginMode ? 'Login' : 'Sign Up';
@@ -105,7 +148,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   ),
                 ),
-                const SizedBox(height: 24),
+                // --- NEW: FORGOT PASSWORD BUTTON ---
+                if (_isLoginMode)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: _isLoading ? null : _showForgotPasswordDialog,
+                      child: const Text('Forgot Password?'),
+                    ),
+                  ),
+                const SizedBox(height: 10),
                 _isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : ElevatedButton(onPressed: _submit, child: Text(buttonText)),
